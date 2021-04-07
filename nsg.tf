@@ -1,3 +1,7 @@
+provider "azurerm" {
+  features {}
+}
+
 resource "azurerm_resource_group" "rg-nsg" {
   name = "rgt-nsg"
   location = var.loc
