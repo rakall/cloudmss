@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    checkpoint = {
+      source = "CheckPointSW/checkpoint"
+      version = "1.2.0"
+    }
+  }
+}
+
 resource "azurerm_resource_group" "rg-nsg" {
   name = "rgt-nsg"
   location = var.loc
