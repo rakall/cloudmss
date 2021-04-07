@@ -1,0 +1,7 @@
+#resource_group    = "rgmanager"
+subscription_id   = "04cfef00-086d-4f47-bb60-e2ed0e6843da"
+loc = "westeurope"
+FrontEndSubnetprefix = "172.16.0.0/25"
+BackEndSubnetprefix ="172.16.0.128/25"
+pass ="Password1234"
+w10Subnetprefix="172.16.1.0/25"
