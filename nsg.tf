@@ -1,10 +1,5 @@
-terraform {
-  required_providers {
-    checkpoint = {
-      source = "CheckPointSW/checkpoint"
-      version = "1.2.0"
-    }
-  }
+provider "azurerm" {
+  features {}
 }
 
 resource "azurerm_resource_group" "rg-nsg" {
