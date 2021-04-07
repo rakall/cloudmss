@@ -1,35 +1,17 @@
 provider "azurerm" {
-features {}
+    # The "feature" block is required for AzureRM provider 2.x.
+    # If you're using version 1.x, the "features" block is not allowed.
+    version = "~>2.0"
+    features {}
 }
-resource "azurerm_resource_group" "rg-nsg" {
-  name = "rgt-nsg"
-  location = var.loc
+ 
+terraform {
+  backend "azurerm" {}
 }
-
-resource "azurerm_network_security_group" "nsg" {
-  name                = "nsg-acceso"
-  location = var.loc
-  resource_group_name = azurerm_resource_group.rg-nsg.name
-
-   security_rule {
-    name                       = "ReglaAcceso"
-    priority                   = 102
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "*"
-    source_port_range          = "*"
-    destination_port_range     = "*"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
-
-  tags = {
-    environment = "Labs"
-  }
-}
-output "gruposeguridad" {
-  value = azurerm_network_security_group.nsg.id
-}
-output "rgnsg" {
-  value = azurerm_resource_group.rg-nsg.name
+ 
+data "azurerm_client_config" "current" {}
+ 
+resource "azurerm_resource_group" "tamopsrg" {
+  name     = "tamops-tf"
+  location = "eastus2"
 }
