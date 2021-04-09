@@ -4,6 +4,17 @@ resource "azurerm_lb" "elb" {
   location            = var.loc
   sku                 = "Standard"
 }
+resource "azurerm_public_ip" "ippublica" {
+  name                = "ippublicabalanceador"
+  resource_group_name = var.rg
+  location            = var.loc
+  allocation_method   = "Static"
+
+  tags = {
+    environment = "Production"
+  }
+}
+
 #load_distribution= [None|Client IP|Client IP and Protocol]
 resource "azurerm_lb_probe" "elb_probe" {
   name                = "probe"
