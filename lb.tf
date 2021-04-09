@@ -3,6 +3,7 @@ resource "azurerm_lb" "elb" {
   resource_group_name = var.rg
   location            = var.loc
   sku                 = "Standard"
+  load_distribution= "Client IP"
 }
 resource "azurerm_public_ip" "ippublica" {
   name                = "ippublicabalanceador"
@@ -18,7 +19,7 @@ resource "azurerm_public_ip" "ippublica" {
 #load_distribution= [None|Client IP|Client IP and Protocol]
 resource "azurerm_lb_probe" "elb_probe" {
   name                = "probe"
-  load_distribution= "Client IP"
+
   resource_group_name = var.rg
   loadbalancer_id     = azurerm_lb.elb.id
   protocol            = "Tcp"
