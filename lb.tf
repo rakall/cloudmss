@@ -6,7 +6,7 @@ resource "azurerm_lb" "elb" {
 }
 #load_distribution= [None|Client IP|Client IP and Protocol]
 resource "azurerm_lb_probe" "elb_probe" {
-  name                = "probe-${local.elb_name}"
+  name                = "probe"
   resource_group_name = var.rg
   loadbalancer_id     = azurerm_lb.elb.id
   protocol            = "Tcp"
