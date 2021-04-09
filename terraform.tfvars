@@ -1,2 +1,2 @@
 loc = "westeurope"
-rg = "rgt-nsg"
+rg = "rg-nsg"
