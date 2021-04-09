@@ -3,7 +3,7 @@ resource "azurerm_lb" "elb" {
   resource_group_name = var.rg
   location            = var.loc
   sku                 = "Standard"
-  load_distribution= "Client IP"
+
 }
 resource "azurerm_public_ip" "ippublica" {
   name                = "ippublicabalanceador"
@@ -27,4 +27,16 @@ resource "azurerm_lb_probe" "elb_probe" {
   interval_in_seconds = "5"
   number_of_probes    = "2"
   depends_on          = [azurerm_lb.elb]
+}
+
+
+resource "azurerm_lb_rule" "example" {
+  #load_distribution= "Client IP"
+  resource_group_name = var.rg
+  loadbalancer_id                = azurerm_lb.elb.id
+  name                           = "LBRule"
+  protocol                       = "Tcp"
+  frontend_port                  = 3389
+  backend_port                   = 3389
+  frontend_ip_configuration_name = "ippublica"
 }
