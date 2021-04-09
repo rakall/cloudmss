@@ -10,7 +10,7 @@ resource "azurerm_resource_group" "rg-nsg" {
 resource "azurerm_network_security_group" "nsg" {
   name                = "nsg-acceso"
   location = var.loc
-  resource_group_name = azurerm_resource_group.rg-nsg.name
+  resource_group_name = var.rg
 
    security_rule {
     name                       = "ReglaAcceso"
