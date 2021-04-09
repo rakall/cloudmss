@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg-nsg" {
-  name = "rgt-nsg"
+  name = var.rg
   location = var.loc
 }
 
