@@ -4,7 +4,7 @@ resource "azurerm_lb" "elb" {
   location            = var.loc
   sku                 = "Standard"
 }
-
+#load_distribution= [None|Client IP|Client IP and Protocol]
 resource "azurerm_lb_probe" "elb_probe" {
   name                = "probe-${local.elb_name}"
   resource_group_name = var.rg
