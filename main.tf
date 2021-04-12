@@ -17,8 +17,6 @@ resource "azurerm_lb" "elb" {
   location            = var.loc
   sku                 = "Standard"
 }
-
-
 resource "azurerm_lb_probe" "elb_probe" {
   name                = "prob"
   resource_group_name = var.rg
@@ -29,25 +27,6 @@ resource "azurerm_lb_probe" "elb_probe" {
   number_of_probes    = "2"
   depends_on          = [azurerm_lb.elb]
 }
-
-resource "azurerm_lb_rule" "elb_rule" {
-  for_each = {
-    for rule in var.pip_rule_map_list : "${rule.pip_name}.${rule.frontend_port}" => rule
-  }
-  name                           = "${each.value.pip_name}-${each.value.frontend_port}-${each.value.backend_port}"
-  resource_group_name            = var.resource_group
-  loadbalancer_id                = azurerm_lb.elb.id
-  frontend_ip_configuration_name = each.value.pip_name
-  protocol                       = each.value.protocol
-  frontend_port                  = each.value.frontend_port
-  backend_port                   = each.value.backend_port
-  backend_address_pool_id        = azurerm_lb_backend_address_pool.elb_pool.id
-  probe_id                       = azurerm_lb_probe.elb_probe.id
-  load_distribution              = "Default"
-  enable_floating_ip             = true
-  depends_on                     = [azurerm_lb_probe.elb_probe, azurerm_lb_backend_address_pool.elb_pool, azurerm_lb.elb]
-}
-
 resource "azurerm_lb_rule" "example" {
   resource_group_name            = var.resource_group
   loadbalancer_id                = azurerm_lb.elb.id
