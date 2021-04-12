@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "rgterraf" {
 resource "azurerm_public_ip_prefix" "public_ip_prefix" {
   name                = "ppp01"
   location            = var.loc
-  resource_group_name = var.rg
+  resource_group_name = "terraform"
   prefix_length       = 28
 }
 resource "azurerm_lb" "elb" {
@@ -19,7 +19,7 @@ resource "azurerm_lb" "elb" {
 }
 resource "azurerm_lb_probe" "elb_probe" {
   name                = "prob"
-  resource_group_name = var.rg
+  resource_group_name = "terraform"
   loadbalancer_id     = azurerm_lb.elb.id
   protocol            = "Tcp"
   port                = "8117"
@@ -28,7 +28,7 @@ resource "azurerm_lb_probe" "elb_probe" {
   depends_on          = [azurerm_lb.elb]
 }
 resource "azurerm_lb_rule" "example" {
-  resource_group_name = var.rg
+  resource_group_name = "terraform"
   loadbalancer_id                = azurerm_lb.elb.id
   load_distribution              = "Default"
   name                           = "LBRule"
