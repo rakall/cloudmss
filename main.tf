@@ -2,3 +2,65 @@ resource "azurerm_resource_group" "rgterraf" {
   name     = var.rg
   location = "West Europe"
 }
+resource "azurerm_public_ip_prefix" "public_ip_prefix" {
+  name                = "ppp01"
+  location            = var.loc
+  resource_group_name = var.rg
+  prefix_length       = 28
+}
+resource "azurerm_lb" "elb" {
+  name                = "Balanceador"
+  resource_group_name = var.rg
+  location            = var.loc
+  sku                 = "Standard"
+}
+
+
+resource "azurerm_lb_probe" "elb_probe" {
+  name                = "prob"
+  resource_group_name = var.rg
+  loadbalancer_id     = azurerm_lb.elb.id
+  protocol            = "Tcp"
+  port                = "8117"
+  interval_in_seconds = "5"
+  number_of_probes    = "2"
+  depends_on          = [azurerm_lb.elb]
+}
+
+resource "azurerm_lb_rule" "elb_rule" {
+  for_each = {
+    for rule in var.pip_rule_map_list : "${rule.pip_name}.${rule.frontend_port}" => rule
+  }
+  name                           = "${each.value.pip_name}-${each.value.frontend_port}-${each.value.backend_port}"
+  resource_group_name            = var.resource_group
+  loadbalancer_id                = azurerm_lb.elb.id
+  frontend_ip_configuration_name = each.value.pip_name
+  protocol                       = each.value.protocol
+  frontend_port                  = each.value.frontend_port
+  backend_port                   = each.value.backend_port
+  backend_address_pool_id        = azurerm_lb_backend_address_pool.elb_pool.id
+  probe_id                       = azurerm_lb_probe.elb_probe.id
+  load_distribution              = "Default"
+  enable_floating_ip             = true
+  depends_on                     = [azurerm_lb_probe.elb_probe, azurerm_lb_backend_address_pool.elb_pool, azurerm_lb.elb]
+}
+
+resource "azurerm_lb_rule" "example" {
+  resource_group_name            = var.resource_group
+  loadbalancer_id                = azurerm_lb.elb.id
+  load_distribution              = "Default"
+  name                           = "LBRule"
+  protocol                       = "Tcp"
+  frontend_port                  = 3389
+  backend_port                   = 3389
+  frontend_ip_configuration_name = "PublicIPAddress"
+}
+
+
+
+
+
+
+
+
+
