@@ -30,7 +30,7 @@ resource "azurerm_lb_probe" "elb_probe" {
 resource "azurerm_lb_rule" "example" {
   resource_group_name = "terraform"
   loadbalancer_id                = azurerm_lb.elb.id
-  load_distribution              = "Default"
+  load_distribution              = "Client IP and Protocol"
   name                           = "LBRule"
   protocol                       = "Tcp"
   frontend_port                  = 3389
