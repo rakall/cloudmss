@@ -1,2 +1,2 @@
 loc = "westeurope"
-rg = "rg-nsg"
+rg = "terraform"
