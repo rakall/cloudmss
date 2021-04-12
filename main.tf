@@ -28,7 +28,7 @@ resource "azurerm_lb_probe" "elb_probe" {
   depends_on          = [azurerm_lb.elb]
 }
 resource "azurerm_lb_rule" "example" {
-  resource_group_name            = var.resource_group
+  resource_group_name = var.rg
   loadbalancer_id                = azurerm_lb.elb.id
   load_distribution              = "Default"
   name                           = "LBRule"
