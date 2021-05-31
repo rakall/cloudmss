@@ -12,7 +12,7 @@ resource "azurerm_public_ip" "example" {
   resource_group_name = azurerm_resource_group.rgterraformtest.name
   location            = azurerm_resource_group.rgterraformtest.location
   allocation_method   = "Static"
-  domain_name_label   = "pruebatagdns-name-cambiado"
+  domain_name_label   = "pruebatagdns-no-original"
   sku                 = "Standard"
   tags = {
     environment = "Test Lab"
