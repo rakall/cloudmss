@@ -35,7 +35,7 @@ resource "azurerm_lb_rule" "elb_rule" {
   name                           = "regladeprueba"
   resource_group_name            = azurerm_resource_group.rgterraformtest.name
   loadbalancer_id                = azurerm_lb.elb.id
-  frontend_ip_configuration_name = "FrontEndIpPrueba"
+  frontend_ip_configuration_name = "IPFRONTEND"
   protocol                       = "TCP"
   frontend_port                  = "443"
   backend_port                   = "10001"
