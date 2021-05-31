@@ -1,25 +1,56 @@
 provider "azurerm" {
   features {}
 }
-resource "azurerm_resource_group" "rgterraf" {
-  name     = var.rg
+resource "azurerm_resource_group" "rgterraformtest" {
+  name     = "rg-terraform-test"
   location = "West Europe"
 }
-resource "azurerm_public_ip_prefix" "public_ip_prefix" {
-  name                = "ppp01"
-  location            = var.loc
-  resource_group_name = "terraform"
-  prefix_length       = 28
+
+
+resource "azurerm_public_ip" "example" {
+  name                = "acceptanceTestPublicIp1"
+  resource_group_name = azurerm_resource_group.rgterraformtest.name
+  location            = azurerm_resource_group.rgterraformtest.location
+  allocation_method   = "Static"
+  domain_name_label   = "pruebatagdns-name"
+  tags = {
+    environment = "Test Lab"
+  }
 }
+
+
 resource "azurerm_lb" "elb" {
-  name                = "Balanceador"
-  resource_group_name = var.rg
-  location            = var.loc
+  name                = "ExternalLoadBalancerTest"
+  resource_group_name = azurerm_resource_group.rgterraformtest.name
+  location            = azurerm_resource_group.rgterraformtest.location
   sku                 = "Standard"
 }
+
+resource "azurerm_lb_rule" "elb_rule" {
+  name                           = "regladeprueba"
+  resource_group_name            = azurerm_resource_group.rgterraformtest.name
+  loadbalancer_id                = azurerm_lb.elb.id
+  frontend_ip_configuration_name = "FrontEndIpPrueba"
+  protocol                       = "TCP"
+  frontend_port                  = "443"
+  backend_port                   = "10001"
+  backend_address_pool_id        = azurerm_lb_backend_address_pool.elb_pool.id
+  probe_id                       = azurerm_lb_probe.elb_probe.id
+  load_distribution              = "Default"
+  enable_floating_ip             = true
+
+}
+
+resource "azurerm_lb_backend_address_pool" "elb_pool" {
+  resource_group_name = azurerm_resource_group.rgterraformtest.name
+  loadbalancer_id     = azurerm_lb.elb.id
+  name                = "Backpool-Test"
+  depends_on          = [azurerm_lb.elb]
+}
+
 resource "azurerm_lb_probe" "elb_probe" {
-  name                = "prob"
-  resource_group_name = "terraform"
+  name                = "probe-prueba"
+  resource_group_name = azurerm_resource_group.rgterraformtest.name
   loadbalancer_id     = azurerm_lb.elb.id
   protocol            = "Tcp"
   port                = "8117"
@@ -27,27 +58,3 @@ resource "azurerm_lb_probe" "elb_probe" {
   number_of_probes    = "2"
   depends_on          = [azurerm_lb.elb]
 }
-resource "azurerm_lb_rule" "example" {
-  resource_group_name = "terraform"
-  loadbalancer_id                = azurerm_lb.elb.id
-  load_distribution              = "SourceIPProtocol"
-  name                           = "LBRule"
-  protocol                       = "Tcp"
-  frontend_port                  = 3389
-  backend_port                   = 3389
-  frontend_ip_configuration_name = "PublicIPAddress"
-}
-
-
-
-resource "azurerm_public_ip" "example" {
-  name                = "PublicIPForLB"
-  location            = var.loc
-  resource_group_name = "terraform"
-  allocation_method   = "Static"
-}
-
-
-
-
-
