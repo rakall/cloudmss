@@ -25,6 +25,10 @@ resource "azurerm_lb" "elb" {
   resource_group_name = azurerm_resource_group.rgterraformtest.name
   location            = azurerm_resource_group.rgterraformtest.location
   sku                 = "Standard"
+  frontend_ip_configuration {
+    name                 = "IPFRONTEND"
+    public_ip_address_id = azurerm_public_ip.example.id
+  }
 }
 
 resource "azurerm_lb_rule" "elb_rule" {
