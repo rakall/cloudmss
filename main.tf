@@ -65,17 +65,17 @@ data "azurerm_storage_account" "sta_snc" {
 
 data "azurerm_log_analytics_workspace" "lag_nic" {
   name                = local.lwk_name_nic
-  resource_group_name = data.azurerm_resource_group.rsg_nic.name
+  resource_group_name = "rg-nic"
 }
 
 data "azurerm_log_analytics_workspace" "lag_spc" {
   name                = local.lwk_name_spc
-  resource_group_name = data.azurerm_resource_group.rsg_spc.name
+  resource_group_name = "rg-spc"
 }
 
 data "azurerm_log_analytics_workspace" "lag_snc" {
   name                = local.lwk_name_snc
-  resource_group_name = data.azurerm_resource_group.rsg_snc.name
+  resource_group_name = "rg-snc"
 }
 
 // Deploy network components for the 3 Firewall clusters
