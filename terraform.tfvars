@@ -1,19 +1,19 @@
 # Product variables
 subscription_id          = "04cfef00-086d-4f47-bb60-e2ed0e6843da"
 location                 = "westeurope"
-vnet_resource_group_name = "gmsp1zu2rsgcomhubcrit001"
+vnet_resource_group_name = "rg-vnet"
 resource_group_nic_name  = "rg-nic"
 resource_group_spc_name  = "rg-spc"
 resource_group_snc_name  = "rg-snc"
 #resourceVnets=rg-vnet   =rg-vnet
 zones                    = [1,2]
 vnet_name          = ""
-snt_front_nic_name = ""
-snt_back_nic_name  = ""
-snt_front_spc_name = ""
-snt_back_spc_name  = ""
-snt_front_snc_name = ""
-snt_back_snc_name  = ""
+snt_front_nic_name = "snt_front_nic_name"
+snt_back_nic_name  = "snt_back_nic_name"
+snt_front_spc_name = "snt_front_spc_name"
+snt_back_spc_name  = "snt_back_spc_name"
+snt_front_snc_name = "snt_front_snc_name"
+snt_back_snc_name  = "snt_back_snc_name"
 
 cost_center   = "CostCenterTest"
 tracking_code = "teckingtest"
