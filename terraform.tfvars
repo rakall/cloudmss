@@ -18,7 +18,7 @@ snt_back_snc_name  = "snt_back_snc_name"
 cost_center   = "CostCenterTest"
 tracking_code = "teckingtest"
 environment   = "p1"
-entity        = "gms"
+entity        = "test"
 
 managementServer = "cybp1weugengenerintfwmds"
 name_sicKeySecret = "chkp-key"
