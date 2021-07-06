@@ -176,7 +176,7 @@ module "spcfw_nvadeploy" {
   vnet_resource_group_name = var.vnet_resource_group_name
 
   sa_name           = data.azurerm_storage_account.sta_spc.name
-  key_vault_id      = var.key_vault_id_spc
+  key_vault_id      = var.key_vault_id_nic
   name_sicKeySecret = var.name_sicKeySecret
 
 
@@ -217,7 +217,7 @@ module "sncfw_nvadeploy" {
   #sa_name = "${var.entity}${var.environment}${lookup(var.location_short, var.location)}sta${element(local.product_name_short, 2)}gen${local.product_purpose}004"
   sa_name = data.azurerm_storage_account.sta_snc.name
   # NVA name 
-  key_vault_id      = var.key_vault_id_snc
+  key_vault_id      = var.key_vault_id_nic
   name_sicKeySecret = var.name_sicKeySecret
   offer             = local.offer
   ver               = local.ver
