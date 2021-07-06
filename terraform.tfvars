@@ -7,7 +7,7 @@ resource_group_spc_name  = "rg-spc"
 resource_group_snc_name  = "rg-snc"
 #resourceVnets=rg-vnet   =rg-vnet
 zones                    = [1,2]
-vnet_name          = ""
+vnet_name          = "vnet-scaleset"
 snt_front_nic_name = "snt_front_nic_name"
 snt_back_nic_name  = "snt_back_nic_name"
 snt_front_spc_name = "snt_front_spc_name"
