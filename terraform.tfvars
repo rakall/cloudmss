@@ -24,9 +24,9 @@ managementServer = "cybp1weugengenerintfwmds"
 name_sicKeySecret = "chkp-key"
 vmss_sku = "Standard_D3_v2"
 
-sa_name_nic = "bootdiag7t3fjjfxqe4hg"
-sa_name_spc = "bootdiagzw6jdr4vvy27u"
-sa_name_snc = "gmsp1zu2vssgenerintfw003"
+sa_name_nic = "stanic"
+sa_name_spc = "staspc"
+sa_name_snc = "stasnc"
 
 lwk_id_nic = ""
 lwk_id_spc = ""
@@ -38,15 +38,15 @@ key_vault_id_snc = ""
 
 nic_ip_prefix_assignment = [
   {
-    pip_name    = "ctop1weulbanicfrontfw001-pip01"
-    prefix_name = "ctop1weulbanicfrontfw001-ppp01"
+    pip_name    = "test-pip01"
+    prefix_name = "testscaleset-ppp01"
   }
 
 ]
 
 nic_pip_rule_map_list = [
   {
-    pip_name      = "ctop1weulbanicfrontfw001-pip01"
+    pip_name      = "testscaleset-pip01"
     protocol      = "TCP"
     frontend_port = 443
     backend_port  = 8080
@@ -54,6 +54,6 @@ nic_pip_rule_map_list = [
 
 ]
 
-nic_template_name = "AZgmshubzu2fwinet30"
-spc_template_name = "AZgmshubzu2fwpro30"
-snc_template_name = "AZgmshubzu2fwnopro30"
+nic_template_name = "AZtestinet30"
+spc_template_name = "AZtestpro30"
+snc_template_name = "AZtestnopro30"
