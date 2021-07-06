@@ -6,13 +6,13 @@ provider "azurerm" {
 
 data "azurerm_client_config" "current" {}
 
-
+/*
 resource "azurerm_marketplace_agreement" "checkpoint" {
   publisher = local.publisher
   offer     = local.offer
   plan      = local.sku
 }
-
+*/
 
 data "azurerm_resource_group" "rsg_nic" {
   name = var.resource_group_nic_name
