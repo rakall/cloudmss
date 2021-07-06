@@ -1,10 +1,11 @@
 # Product variables
 subscription_id          = "04cfef00-086d-4f47-bb60-e2ed0e6843da"
-location                 = "EastUS2"
+location                 = "westeurope"
 vnet_resource_group_name = "gmsp1zu2rsgcomhubcrit001"
-resource_group_nic_name  = ""
-resource_group_spc_name  = ""
-resource_group_snc_name  = ""
+resource_group_nic_name  = "rg-nic"
+resource_group_spc_name  = "rg-spc"
+resource_group_snc_name  = "rg-snc"
+#resourceVnets=rg-vnet   =rg-vnet
 zones                    = [1,2]
 vnet_name          = ""
 snt_front_nic_name = ""
