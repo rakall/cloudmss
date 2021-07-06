@@ -28,13 +28,13 @@ sa_name_nic = "stanic"
 sa_name_spc = "staspc"
 sa_name_snc = "stasnc"
 
-lwk_id_nic = ""
-lwk_id_spc = ""
-lwk_id_snc = ""
+lwk_id_nic = "lwknic"
+lwk_id_spc = "lwkspc"
+lwk_id_snc = "lwksnc"
 
-key_vault_id_nic = ""
-key_vault_id_spc = ""
-key_vault_id_snc = ""
+key_vault_id_nic = "kvidnic"
+key_vault_id_spc = "kvidspc"
+key_vault_id_snc = "kvidsnc"
 
 nic_ip_prefix_assignment = [
   {
