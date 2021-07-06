@@ -161,7 +161,7 @@ module "nicfw_nvadeploy" {
 
 
 // Deploy NVA servers South Production Corporate SPC
-
+/*
 module "spcfw_nvadeploy" {
   source         = "git::https://github.com/rakall/sur"
   resource_group = data.azurerm_resource_group.rsg_spc.name
@@ -196,9 +196,9 @@ module "spcfw_nvadeploy" {
   vmss_sku         = var.vmss_sku
   template_name    = var.spc_template_name
 }
-
+*/
 // Deploy NVA servers South non-Production Corporate SNC
-
+/*
 module "sncfw_nvadeploy" {
   source         = "git::https://github.com/rakall/sur"
   resource_group = data.azurerm_resource_group.rsg_snc.name
@@ -236,4 +236,4 @@ module "sncfw_nvadeploy" {
   template_name    = var.snc_template_name
 
 }
-
+*/
