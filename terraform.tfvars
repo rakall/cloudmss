@@ -1,5 +1,5 @@
 # Product variables
-subscription_id          = "fb3d9689-37b4-48ce-a827-c3ae7cbf3965"
+subscription_id          = "04cfef00-086d-4f47-bb60-e2ed0e6843da"
 location                 = "EastUS2"
 vnet_resource_group_name = "gmsp1zu2rsgcomhubcrit001"
 resource_group_nic_name  = "gmsp1zu2rsggenerintfw001"
