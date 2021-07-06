@@ -32,9 +32,9 @@ lwk_id_nic = "lwknic"
 lwk_id_spc = "lwkspc"
 lwk_id_snc = "lwksnc"
 
-key_vault_id_nic = "kvidnic"
-key_vault_id_spc = "kvidspc"
-key_vault_id_snc = "kvidsnc"
+key_vault_id_nic = "/subscriptions/04cfef00-086d-4f47-bb60-e2ed0e6843da/resourceGroups/rg-nic/providers/Microsoft.KeyVault/vaults/kvidnic"
+key_vault_id_spc = "/subscriptions/04cfef00-086d-4f47-bb60-e2ed0e6843da/resourceGroups/rg-nic/providers/Microsoft.KeyVault/vaults/kvidspc"
+key_vault_id_snc = "/subscriptions/04cfef00-086d-4f47-bb60-e2ed0e6843da/resourceGroups/rg-nic/providers/Microsoft.KeyVault/vaults/kvidsnc"
 
 nic_ip_prefix_assignment = [
   {
