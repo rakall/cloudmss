@@ -46,7 +46,7 @@ nic_ip_prefix_assignment = [
 
 nic_pip_rule_map_list = [
   {
-    pip_name      = "testscaleset-pip01"
+    pip_name      = "test-pip01"
     protocol      = "TCP"
     frontend_port = 443
     backend_port  = 8080
