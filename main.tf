@@ -123,7 +123,7 @@ data "azurerm_subnet" "sncfw_sntdeploy_back" {
 }
 
 module "nicfw_nvadeploy" {
-  source         = "git::https://github.alm.europe.cloudcenter.corp/ccc-ccoe/eac.az.modules.nva-checkpoint-north.git?ref=v1.0.11"
+  source         = "git::https://github.com/rakall/norte"
   resource_group = data.azurerm_resource_group.rsg_nic.name
   product_name   = "NorthInternetCorporate"
   entity         = var.entity
@@ -163,7 +163,7 @@ module "nicfw_nvadeploy" {
 // Deploy NVA servers South Production Corporate SPC
 
 module "spcfw_nvadeploy" {
-  source         = "git::https://github.alm.europe.cloudcenter.corp/ccc-ccoe/eac.az.modules.nva-checkpoint.git?ref=v1.0.9"
+  source         = "git::https://github.com/rakall/sur"
   resource_group = data.azurerm_resource_group.rsg_spc.name
   product_name   = "SouthProductionCorporate"
   entity         = var.entity
@@ -200,7 +200,7 @@ module "spcfw_nvadeploy" {
 // Deploy NVA servers South non-Production Corporate SNC
 
 module "sncfw_nvadeploy" {
-  source         = "git::https://github.alm.europe.cloudcenter.corp/ccc-ccoe/eac.az.modules.nva-checkpoint.git?ref=v1.0.9"
+  source         = "git::https://github.com/rakall/sur"
   resource_group = data.azurerm_resource_group.rsg_snc.name
   product_name   = "SouthnoProductionCorporate"
   entity         = var.entity
