@@ -20,7 +20,7 @@ output "nicfw_pip_names" {
 output "nicfw_pip_addresses" {
   value = module.nicfw_nvadeploy.pip_addresses
 }
-
+/*
 output "snc_elb_id" {
   value = module.sncfw_nvadeploy.elb_id
 }
@@ -44,4 +44,4 @@ output "spc_ilb_id" {
 output "spcfw_vmss_id" {
   value = module.spcfw_nvadeploy.vmss_id
 }
-
+*/
