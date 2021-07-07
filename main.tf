@@ -29,12 +29,12 @@ data "azurerm_storage_account" "sta_nic" {
   name                = var.sa_name_nic
   resource_group_name = data.azurerm_resource_group.rsg_nic.name
 }
-
+/*
 data "azurerm_resource_group" "rsg_spc" {
   name = var.resource_group_spc_name
   #depends_on = [module.rsg_module_spc]
 }
-
+*/
 data "azurerm_key_vault" "kvt_spc" {
   name                = local.kvt_name_spc
   resource_group_name = data.azurerm_resource_group.rsg_spc.name
@@ -46,11 +46,12 @@ data "azurerm_storage_account" "sta_spc" {
   resource_group_name = data.azurerm_resource_group.rsg_spc.name
 }
 
-
+/*
 data "azurerm_resource_group" "rsg_snc" {
   name = var.resource_group_snc_name
   #depends_on = [module.rsg_module_snc]
 }
+*/
 
 data "azurerm_key_vault" "kvt_snc" {
   name                = local.kvt_name_snc
