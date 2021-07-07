@@ -6,14 +6,6 @@ provider "azurerm" {
 
 data "azurerm_client_config" "current" {}
 
-/*
-resource "azurerm_marketplace_agreement" "checkpoint" {
-  publisher = local.publisher
-  offer     = local.offer
-  plan      = local.sku
-}
-*/
-
 data "azurerm_resource_group" "rsg_nic" {
   name = var.resource_group_nic_name
   #depends_on = [module.rsg_module_nic]
@@ -29,58 +21,15 @@ data "azurerm_storage_account" "sta_nic" {
   name                = var.sa_name_nic
   resource_group_name = data.azurerm_resource_group.rsg_nic.name
 }
-/*
-data "azurerm_resource_group" "rsg_spc" {
-  name = var.resource_group_spc_name
-  #depends_on = [module.rsg_module_spc]
-}
-*/
-data "azurerm_key_vault" "kvt_spc" {
-  name                = local.kvt_name_spc
-  resource_group_name = data.azurerm_resource_group.rsg_spc.name
-  depends_on          = [data.azurerm_resource_group.rsg_spc]
-}
 
-data "azurerm_storage_account" "sta_spc" {
-  name                = var.sa_name_spc
-  resource_group_name = data.azurerm_resource_group.rsg_spc.name
-}
 
-/*
-data "azurerm_resource_group" "rsg_snc" {
-  name = var.resource_group_snc_name
-  #depends_on = [module.rsg_module_snc]
-}
-*/
-
-data "azurerm_key_vault" "kvt_snc" {
-  name                = local.kvt_name_snc
-  resource_group_name = data.azurerm_resource_group.rsg_snc.name
-  depends_on          = [data.azurerm_resource_group.rsg_snc]
-}
-
-data "azurerm_storage_account" "sta_snc" {
-  name                = var.sa_name_snc
-  resource_group_name = data.azurerm_resource_group.rsg_snc.name
-}
 
 data "azurerm_log_analytics_workspace" "lag_nic" {
   name                = local.lwk_name_nic
   resource_group_name = "rg-nic"
 }
-/*
-data "azurerm_log_analytics_workspace" "lag_spc" {
-  name                = local.lwk_name_spc
-  resource_group_name = "rg-spc"
-}
 
-data "azurerm_log_analytics_workspace" "lag_snc" {
-  name                = local.lwk_name_snc
-  resource_group_name = "rg-snc"
-}
-*/
-// Deploy network components for the 3 Firewall clusters
-#
+
 
 data "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
@@ -99,30 +48,6 @@ data "azurerm_subnet" "nicfw_sntdeploy_back" {
   resource_group_name  = var.vnet_resource_group_name
 
 }
-data "azurerm_subnet" "spcfw_sntdeploy_front" {
-  name                 = var.snt_front_spc_name
-  virtual_network_name = var.vnet_name
-  resource_group_name  = var.vnet_resource_group_name
-}
-
-data "azurerm_subnet" "spcfw_sntdeploy_back" {
-  name                 = var.snt_back_spc_name
-  virtual_network_name = var.vnet_name
-  resource_group_name  = var.vnet_resource_group_name
-}
-
-data "azurerm_subnet" "sncfw_sntdeploy_front" {
-  name                 = var.snt_front_snc_name
-  virtual_network_name = var.vnet_name
-  resource_group_name  = var.vnet_resource_group_name
-}
-
-data "azurerm_subnet" "sncfw_sntdeploy_back" {
-  name                 = var.snt_back_snc_name
-  virtual_network_name = var.vnet_name
-  resource_group_name  = var.vnet_resource_group_name
-}
-
 module "nicfw_nvadeploy" {
   source         = "git::https://github.com/rakall/norte"
   resource_group = data.azurerm_resource_group.rsg_nic.name
