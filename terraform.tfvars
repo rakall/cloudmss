@@ -1,2 +1,0 @@
-loc = "westeurope"
-rg = "terraform"
