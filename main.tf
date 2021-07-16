@@ -10,7 +10,7 @@ provider "azurerm" {
 
 //********************** Basic Configuration **************************//
 module "common" {
-  source = "/modules/common"
+  source = ".//modules/common"
   resource_group_name = var.resource_group_name
   location = var.location
   admin_password = var.admin_password
@@ -30,7 +30,7 @@ module "common" {
 
 //********************** Networking **************************//
 module "vnet" {
-  source = "/modules/common"
+  source = ".//modules/common"
   vnet_name = var.vnet_name
   resource_group_name = module.common.resource_group_name
   location = module.common.resource_group_location
@@ -40,7 +40,7 @@ module "vnet" {
 }
 
 module "network-security-group" {
-  source = "/modules/network-security-group"
+  source = ".//modules/network-security-group"
   resource_group_name = module.common.resource_group_name
   security_group_name = "${module.common.resource_group_name}_nsg"
   location = module.common.resource_group_location
